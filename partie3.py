@@ -3,10 +3,9 @@ lettre_saisie = input("saisir un caractere:")
 
 from carte import text
 
-for lettre in text :
-    if lettre_saisie != lettre:
-        lettre_presente = False
-    else:
-        lettre_presente = True
+if lettre_saisie in text :
+    lettre_presente = True
+else :
+    lettre_presente = False
 
 print(lettre_presente)
