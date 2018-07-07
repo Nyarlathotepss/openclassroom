@@ -1,0 +1,18 @@
+from carte import text
+def creation_labyrinthe (key1,key2,lettre) :
+    key1 = 0
+    key2 = 0
+    labyrinthe = {}
+    for lettre in text :
+        labyrinthe[key1,key2] = lettre
+        key1 += 1
+        if key1 == 10 :
+            key1 = 0
+            key2 += 1
+
+def nb_apparation_lettre() : 
+    for lettre in text :
+        labyrinthe[lettre] = 1
+        if lettre in labyrinthe.key :
+            labyrinthe[lettre] += 1
+            
