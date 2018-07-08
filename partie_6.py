@@ -1,9 +1,11 @@
-reponse_client = "oui"
+liste_oui = ["oui","o","yes"]
+liste_non = ["non","n","no"]
 
-while reponse_client != "non" and reponse_client != "n":
-    reponse_client = input("Voulez vous continuer ? :")
-    if reponse_client == "oui" or reponse_client == "o" :
-        continue
-    elif reponse_client is not "non" and reponse_client is not "oui":
-        print("saisie incorrecte :")
-        continue
+reponse_uti = "oui"
+
+while reponse_uti not in liste_non :
+    if reponse_uti in liste_oui :
+        reponse_uti = input("Veuillez saisir votre reponse :")
+    else :
+        print("Mauvaise saisie Recommencer")
+        reponse_uti = input("Veuillez saisir votre reponse :")
