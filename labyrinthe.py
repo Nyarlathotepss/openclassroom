@@ -1,45 +1,22 @@
 # Creation du labyrinthe en dictionnaire
+import pickle
 
-squelette_labyrinthe = {}
-squelette_labyrinthe[0, 0] = "W"
-squelette_labyrinthe[1, 0] = "W"
-squelette_labyrinthe[2, 0] = "W"
-squelette_labyrinthe[3, 0] = "W"
-squelette_labyrinthe[4, 0] = "-"
-squelette_labyrinthe[5, 0] = "-"
-squelette_labyrinthe[6, 0] = "-"
-squelette_labyrinthe[7, 0] = "-"
-squelette_labyrinthe[8, 0] = "-"
-squelette_labyrinthe[9, 0] = "W"
-squelette_labyrinthe[0, 1] = "W"
-squelette_labyrinthe[1, 1] = "-"
-squelette_labyrinthe[2, 1] = "-"
-squelette_labyrinthe[3, 1] = "-"
-squelette_labyrinthe[4, 1] = "-"
-squelette_labyrinthe[5, 1] = "-"
-squelette_labyrinthe[6, 1] = "-"
-squelette_labyrinthe[7, 1] = "-"
-squelette_labyrinthe[8, 1] = "W"
-squelette_labyrinthe[9, 1] = "W"
-squelette_labyrinthe[0, 2] = "W"
-squelette_labyrinthe[1, 2] = "W"
-squelette_labyrinthe[2, 2] = "W"
-squelette_labyrinthe[3, 2] = "-"
-squelette_labyrinthe[4, 2] = "M"
-squelette_labyrinthe[5, 2] = "-"
-squelette_labyrinthe[6, 2] = "-"
-squelette_labyrinthe[7, 2] = "W"
-squelette_labyrinthe[8, 2] = "W"
-squelette_labyrinthe[9, 2] = "W"
-squelette_labyrinthe[0, 3] = "W"
-squelette_labyrinthe[1, 3] = "W"
-squelette_labyrinthe[2, 3] = "W"
-squelette_labyrinthe[3, 3] = "W"
-squelette_labyrinthe[4, 3] = "W"
-squelette_labyrinthe[5, 3] = "W"
-squelette_labyrinthe[6, 3] = "-"
-squelette_labyrinthe[7, 3] = "-"
-squelette_labyrinthe[8, 3] = "W"
-squelette_labyrinthe[9, 3] = "W"
-squelette_labyrinthe["W"] = 22
-squelette_labyrinthe["M"] = 1
+from carte import text
+
+def creation_labyrinthe () :
+    key1 = 0
+    key2 = 0
+    labyrinthe = {}
+    for lettre in text :
+        if lettre == 'n' :
+            continue
+        else :
+            labyrinthe[key1,key2] = lettre
+            key1 += 1
+            if key1 == 10 :
+                key1 = 0
+                key2 += 1
+
+    fichier_labyrinthe =  open("test.py","wb")
+    mon_depickler = pickle.Pickler(fichier_labyrinthe)
+    mon_depickler.dump(labyrinthe)
