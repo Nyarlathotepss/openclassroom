@@ -1,15 +1,1 @@
-"WWWWWWWWWWWWWWW"\n
-"w-------------w"\n
-"w--w-----wwwwww"\n
-"w--wwww--w----w"\n
-"w-----w-------w"\n
-"w-w---w--w-w--w"\n
-"w-w---w--w-w--w"\n
-"w-w---w--w-wwww"\n
-"w-w---wwww----w"\n
-"w-w-----------w"\n
-"w--wwwwwww-w--w"\n
-"w--w-ww--www-ww"\n
-"w--w-ww-------w"\n
-"w--------wwwwww"\n
-"wwwwwwwwwwwwwww"\n
+"WWWWWWWWWWWWWWW"\n"w-------------w"\n"w--w-----wwwwww"\n"w--wwww--w----w"\n"w-----w-------w"\n"w-w---w--w-w--w"\n"w-w---w--w-w--w"\n"w-w---w--w-wwww"\n"w-w---wwww----w"\n"w-w-----------w"\n"w--wwwwwww-w--w"\n"w--w-ww--www-ww"\n"w--w-ww-------w"\n"w--------wwwwww"\n"wwwwwwwwwwwwwww"\n
