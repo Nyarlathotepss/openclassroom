@@ -25,8 +25,23 @@ def create_labyrinthe_to_print() :
         labyrinthe_to_print = line.strip("\n")
     return labyrinthe_to_print
 
+
+'''def check_mcgyver ():
+    for lettre in labyrinthe_to_print[2]:
+        if lettre == "m":
+            mc_gyver =  create_labyrinthe_to_print()
+
+
 def move_mcgyver() :
     move_input = input("saisir une direction:")
+    if move_input == "q":
+
+    if move_input == "d":
+
+    if move_input == "s":
+
+    elif move_input =="z": '''
+
 
 
 
