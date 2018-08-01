@@ -1,6 +1,6 @@
 import pickle
 
-from carte import text
+from Exercices.carte import text
 
 
 def creation_labyrinthe():
@@ -23,13 +23,13 @@ def creation_labyrinthe():
         else:
             continue
 
-    fichier_labyrinthe = open("fichier_labyrinthe.py", "wb")
+    fichier_labyrinthe = open("fichier_labyrinthe.py", "w")
     mon_pickler = pickle.Pickler(fichier_labyrinthe)
     mon_pickler.dump(labyrinthe)
 
 
 def nb_apparation_lettre():
-    fichier_labyrinthe = open("fichier_labyrinthe.py", "rb")
+    fichier_labyrinthe = open("fichier_labyrinthe.py", "r")
     mon_depickler = pickle.Unpickler(fichier_labyrinthe)
     labyrinthe = mon_depickler.load()
 
@@ -49,6 +49,6 @@ def nb_apparation_lettre():
         labyrinthe[lettre] = nb_apparition  # On crée une nouvelle ligne dans le dict labyrinthe
     print(labyrinthe)
 
-    fichier_labyrinthe = open("fichier_labyrinthe", "wb")
+    fichier_labyrinthe = open("fichier_labyrinthe", "w")
     mon_pickler = pickle.Pickler(fichier_labyrinthe)
     mon_pickler.dump(labyrinthe)

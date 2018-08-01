@@ -1,4 +1,4 @@
-from labyrinthe import squelette_labyrinthe
+from Exercices.labyrinthe import squelette_labyrinthe
 
 lettre_a_saisir = input("Veuillez saisir une lettre :")
 

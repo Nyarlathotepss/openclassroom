@@ -1,6 +1,4 @@
-import pickle
-
-from labyrinthe import *
+from Exercices.labyrinthe import *
 
 creation_labyrinthe()
 

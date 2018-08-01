@@ -1,7 +1,7 @@
 
 lettre_saisie = input("saisir un caractere:")
 
-from carte import text
+from Exercices.carte import text
 
 if lettre_saisie in text :
     lettre_presente = True
