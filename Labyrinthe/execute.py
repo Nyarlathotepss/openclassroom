@@ -1,6 +1,6 @@
 import pygame
 import random
-from Element import *
+from Element.py import *
 from pygame.locals import *
 
 dict = Dictionnary()
@@ -19,8 +19,8 @@ pygame.display.flip()
 continuer = 1
 while continuer:
 
-    macgyver = Player(dict.dict_labyrinthe)# A revoir !!!!!
-    position = (macgyver.positionx,macgyver.positiony)
+    macgyver = Player(dict.dict_labyrinthe) # ici modif effectué
+    position = macgyver.checkposition()
 
     for event in pygame.event.get():  # On parcours la liste de tous les événements reçus
 
@@ -40,7 +40,7 @@ while continuer:
             dict.dict_labyrinthe[position] = "-"
             dict.dict_labyrinthe[(position[0]), (position[1] - 1)] = "m"
 
-        dict.lablist()
-        dict.displaylabyrinthe()
+        macgyver.checkobject
+        # execution de la fonction Main ?
 
         pygame.display.flip()

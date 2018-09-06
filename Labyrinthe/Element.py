@@ -1,13 +1,29 @@
 import pygame
 import random
 
+def Main():
+
+    listtodisplay = []
+    i = 0
+    for letter in Dictionnary.dict_labyrinthe.values():
+        for letter1 in Element.dictionnary.values(): # on accede a la variable dictionnary de Element ?
+            if letter == letter1:
+                fenetre.blit(Element.image)
+                i += 1
+                if i > 15:
+                    listtodisplay.append("/ n")
 
 class Element:
 
-    def __init__(self,positionx,positiony):
+    dictionnary = {"w":"wall.png", "m":"MacGyver.png", "a":"seringue.png", "b":"tube_plastique.png", "c":"ether.png", "g":"Gardien.png", "-":"empty.png"}
+
+    def __init__(self,positionx,positiony,letter):
         self.positionx = positionx
         self.positiony = positiony
+        self.image = pygame.transform.scale(pygame.image.load(Element.dictionnary[letter]), [20,20])
 
+    def display_element(self, fenetre):
+        self.fenetre = pygame.display.set_mode((640, 480),RESIZABLE)
 
 class Player:
     def __init__(self,dictionnary):
@@ -17,6 +33,18 @@ class Player:
         for cle, valeur in dictionnary.items():
             if valeur == "m":
                 return cle
+
+    def checkobject(self,dictionnary):
+        while object != 3:
+            if Player.checkposition() == self.position_object1(dictionnary):
+                object += 1
+            if Player.checkposition() == self.position_object2(dictionnary):
+                object += 1
+            if Player.checkposition() == self.position_object3(dictionnary):
+                object += 1
+'''if self.checkposition() == self. ou se trouve le gardien alors le jeu est fini sinon macgyber meurt'''
+
+
 
 class Dictionnary:
 
@@ -58,50 +86,3 @@ class Dictionnary:
         self.dict_labyrinthe[position_object1] = "a"
         self.dict_labyrinthe[position_object2] = "b"
         self.dict_labyrinthe[position_object3] = "c"
-
-    def lablist (self):
-        '''create an object type list to show image in pygame( a revoir pour return list)'''
-        ligne = str()
-        list_lettre = []
-        i = 0
-        for lettre in dict_labyrinthe.values():
-            list_lettre.append(lettre)
-            i += 1
-            if i > 15:
-                ligne = "".join(list_lettre)
-                print(ligne)
-                ligne = None
-                i = 0
-                list_lettre = []
-
-    def displaylabyrinthe (self):
-        '''Display the blocks in window'''
-        wall = pygame.image.load("wall.png").convert
-        macgyver = pygame.image.load("MacGyver.png").convert
-        needle = pygame.image.load("seringue.png").convert
-        tube = pygame.image.load("tube_plastique.png").convert
-        ether = pygame.image.load("ether.png").convert
-        guardian = pygame.image.load("Gardien.png".).convert
-        exit = pygame.image.load("wall.png").convert
-
-        positiontocollapse = (0,0)
-
-        for line in self.dict_labyrinthe:
-            for lettre in line:
-                if lettre == "w":
-                    fenetre.blit(wall,(positiontocollapse))
-                if lettre == "m":
-                    fenetre.blit(macgyver,(positiontocollapse))
-                if lettre == "a":
-                    fenetre.blit(needle,(positiontocollapse))
-                if lettre == "b":
-                    fenetre.blit(tube,(positiontocollapse))
-                if lettre == "c":
-                    fenetre.blit(ether,(positiontocollapse))
-                if lettre == "g"
-                    fenetre.blit(wall,(positiontocollapse))
-                elif lettre == "-":
-                    continue
-
-                positiontocollapse[1] += 20
-            positiontocollapse[0] += 20
