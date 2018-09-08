@@ -1,33 +1,26 @@
 import pygame
 import random
 
-def Main():
-
-    listtodisplay = []
-    i = 0
-    for letter in Dictionnary.dict_labyrinthe.values():
-        for letter1 in Element.dictionnary.values(): # on accede a la variable dictionnary de Element ?
-            if letter == letter1:
-                fenetre.blit(Element.image)
-                i += 1
-                if i > 15:
-                    listtodisplay.append("/ n")
-
 class Element:
 
     dictionnary = {"w":"wall.png", "m":"MacGyver.png", "a":"seringue.png", "b":"tube_plastique.png", "c":"ether.png", "g":"Gardien.png", "-":"empty.png"}
 
-    def __init__(self,positionx,positiony,letter):
-        self.positionx = positionx
-        self.positiony = positiony
+    def __init__(self,letter):
+        self.position = []
+        self.letter = letter
         self.image = pygame.transform.scale(pygame.image.load(Element.dictionnary[letter]), [20,20])
 
-    def display_element(self, fenetre):
-        self.fenetre = pygame.display.set_mode((640, 480),RESIZABLE)
+    def insertposition(self,positionx,positiony):
+        self.position.append([positionx,positiony])
+
+
+
 
 class Player:
+
     def __init__(self,dictionnary):
         self.positionx,self.positiony = self.checkposition(dictionnary)
+        self.listobjects = set()
 
     def checkposition(self,dictionnary):
         for cle, valeur in dictionnary.items():
@@ -35,14 +28,20 @@ class Player:
                 return cle
 
     def checkobject(self,dictionnary):
-        while object != 3:
-            if Player.checkposition() == self.position_object1(dictionnary):
-                object += 1
-            if Player.checkposition() == self.position_object2(dictionnary):
-                object += 1
-            if Player.checkposition() == self.position_object3(dictionnary):
-                object += 1
-'''if self.checkposition() == self. ou se trouve le gardien alors le jeu est fini sinon macgyber meurt'''
+
+        if self.checkposition() == dictionnary.object1[0]: # j'apelle un object dictionnary qui contient object1 (lui meme une liste)
+            self.listobjects.add(dictionnary.object1[1])
+        if self.checkposition() == dictionnary.object2[0]:
+            self.listobjects.add(dictionnary..object2[1])
+        if self.checkposition() == dictionnary.object3[0]:
+            self.listobjects.add(dictionnary.object3[1])
+
+    def checkallobjects(self):
+
+        if len(self.listobjects) == 3:
+            return True
+        else:
+            return False
 
 
 
@@ -51,13 +50,18 @@ class Dictionnary:
     def __init__(self):
         '''By default my dictionnary is empty'''
         self.dict_labyrinthe = {}
+        self.object1 = []
+        self.object2 = []
+        self.object3 = []
+        self.generatedictionnary()
+        self.generateobject()
 
     def generatedictionnary(self):
         ''' Generate a dictionnary with file.txt'''
         my_file = open("labyrinthe.txt", "r")
         text = my_file.read()
 
-        nb_lettre = 0  # Bloc pour compter le nombre de lettre dans une ligne
+        nb_lettre = 0  # Bloc pour compter le nombre de lettres dans une ligne
         key1 = 0
         key2 = 0
 
@@ -80,9 +84,15 @@ class Dictionnary:
         for cle, valeur in self.dict_labyrinthe.items():
             if valeur == "-":
                 list_empty_case.append(cle)
-        position_object1 = random.choice(list_empty_case)
-        position_object2 = random.choice(list_empty_case)
-        position_object3 = random.choice(list_empty_case)
-        self.dict_labyrinthe[position_object1] = "a"
-        self.dict_labyrinthe[position_object2] = "b"
-        self.dict_labyrinthe[position_object3] = "c"
+        self.object1.append(random.choice(list_empty_case)
+        self.object2.append(random.choice(list_empty_case)
+        self.object3.append(random.choice(list_empty_case)
+        self.dict_labyrinthe[self.object1[0]] = "a"
+        self.object1.append("a")
+        self.dict_labyrinthe[self.object2[0]] = "b"
+        self.object2.append("b")
+        self.dict_labyrinthe[self.object3[0]] = "c"
+        self.object3.append("c")
+
+    def display_element(self, fenetre):
+        self.fenetre =

@@ -1,11 +1,8 @@
 import pygame
-import random
-from Element.py import *
+from Element import *
 from pygame.locals import *
 
 dict = Dictionnary()
-dict.generatedictionnary()
-dict.generateobject()
 
 # Ici commence l'interface graphique via pygame
 pygame.init()
@@ -27,18 +24,19 @@ while continuer:
         if event.type == QUIT:  # Si un de ces événements est de type QUIT
             continuer = 0  # On arrête la boucle
 
-        if event.type == K_LEFT:
-            dict.dict_labyrinthe[position] = "-"
-            dict.dict_labyrinthe[(position[0]) - 1, position[1]] = "m"
-        if event.type == K_RIGHT:
-            dict.dict_labyrinthe[position] = "-"
-            dict.dict_labyrinthe[(position[0]) + 1, position[1]] = "m"
         if event.type == K_DOWN:
-            dict.dict_labyrinthe[position] = "-"
-            dict.dict_labyrinthe[(position[0]), (position[1] + 1)] = "m"
-        if event.type == K_UP:
-            dict.dict_labyrinthe[position] = "-"
-            dict.dict_labyrinthe[(position[0]), (position[1] - 1)] = "m"
+            if event.key == K_LEFT:
+                dict.dict_labyrinthe[position] = "-"
+                dict.dict_labyrinthe[(position[0]) - 1, position[1]] = "m"
+            if event.type == K_RIGHT:
+                dict.dict_labyrinthe[position] = "-"
+                dict.dict_labyrinthe[(position[0]) + 1, position[1]] = "m"
+            if event.type == K_DOWN:
+                dict.dict_labyrinthe[position] = "-"
+                dict.dict_labyrinthe[(position[0]), (position[1] + 1)] = "m"
+            if event.type == K_UP:
+                dict.dict_labyrinthe[position] = "-"
+                dict.dict_labyrinthe[(position[0]), (position[1] - 1)] = "m"
 
         macgyver.checkobject
         # execution de la fonction Main ?
