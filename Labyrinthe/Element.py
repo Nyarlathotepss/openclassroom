@@ -95,4 +95,3 @@ class Dictionnary:
         self.object3.append("c")
 
     def display_element(self, fenetre):
-        self.fenetre =
