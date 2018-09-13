@@ -1,34 +1,25 @@
-
-def list_display_lab ():
-
-    listtodisplay = []
-    i = 0
-    for letter in self.dict_labyrinthe.values:
-        listtodisplay.append(letter)
-        fenetre.blit(self.image)
-        i += 1
-
-        if i > 15:
-            listtodisplay.append(/n)
+dictionnary = {"w": "wall.png", "m": "MacGyver.png", "a": "seringue.png", "b": "tube_plastique.png", "c": "ether.png",
+               "g": "Gardien.png", "-": "empty.png"}
 
 
-            ''' def lablist (self):
-             create an object type list to show image in pygame( a revoir pour return list)
-             ligne = str()
-             list_lettre = []
-             i = 0
-             for lettre in self.dict_labyrinthe.values():
-                 list_lettre.append(lettre)
-                 i += 1
-                 if i > 15:
-                     ligne = "".join(list_lettre)
-                     print(ligne)
-                     ligne = None
-                     i = 0
-                     list_lettre = []'''
+def __init__(self, letter):
+    self.number = []
+    self.letter = letter
+    self.image = pygame.transform.scale(pygame.image.load(Element.dictionnary[letter]), [20, 20])
+
+
+def insertnumber(self, number):
+
+    self.number.append(number)
 
 
 
+def display_element(self, fenetre):
 
-
+    test = Element()
+    num = 0
+    for valeur in self.dict_dictionnary:
+        num +=1
+        insertnumber(num)
+        test.letter = valeur
 

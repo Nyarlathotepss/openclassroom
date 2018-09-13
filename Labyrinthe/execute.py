@@ -7,17 +7,21 @@ dict = Dictionnary()
 # Ici commence l'interface graphique via pygame
 pygame.init()
 
-fenetre = pygame.display.set_mode((640, 480),RESIZABLE)
+window = pygame.display.set_mode((300, 300),RESIZABLE)
 fond = pygame.image.load("fond-gris.jpg").convert()
-fenetre.blit(fond,(0,0))
+window.blit(fond,(0,0))
+
+dict.display_element(window)
 
 pygame.display.flip()
 
 continuer = 1
 while continuer:
 
-    macgyver = Player(dict.dict_labyrinthe) # ici modif effectué
-    position = macgyver.checkposition()
+    macgyver = Player(dict)
+    guardian = Player(dict)
+    position = macgyver.checkposition(dict)
+    positionguardian = guardian.checkguardianposition(dict)
 
     for event in pygame.event.get():  # On parcours la liste de tous les événements reçus
 
@@ -28,6 +32,7 @@ while continuer:
             if event.key == K_LEFT:
                 dict.dict_labyrinthe[position] = "-"
                 dict.dict_labyrinthe[(position[0]) - 1, position[1]] = "m"
+                print("left")
             if event.type == K_RIGHT:
                 dict.dict_labyrinthe[position] = "-"
                 dict.dict_labyrinthe[(position[0]) + 1, position[1]] = "m"
@@ -37,8 +42,9 @@ while continuer:
             if event.type == K_UP:
                 dict.dict_labyrinthe[position] = "-"
                 dict.dict_labyrinthe[(position[0]), (position[1] - 1)] = "m"
+            if dict.dict_labyrinthe[position] == positionguardian:
+                if macgyver.checkallobjects == False:
+                    continuer = 0
 
-        macgyver.checkobject
-        # execution de la fonction Main ?
-
+        dict.display_element(window)
         pygame.display.flip()
