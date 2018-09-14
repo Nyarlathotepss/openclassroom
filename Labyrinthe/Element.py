@@ -5,31 +5,29 @@ class Element:
 
     dictionnary = {"w":"wall.png", "m":"MacGyver.png", "a":"seringue.png", "b":"tube_plastique.png", "c":"ether.png", "g":"Gardien.png", "-":"empty.png"}
 
-    def __init__(self,letter):
+    def __init__(self, letter):
         self.position = []
         self.letter = letter
-        self.image = pygame.transform.scale(pygame.image.load(Element.dictionnary[letter]), [20,20])
+        self.image = pygame.transform.scale(pygame.image.load(Element.dictionnary[letter]), [20, 20])
 
-    def insertposition(self,positionx,positiony):
-        self.position.append([positionx,positiony])
-
-
+    def insertposition(self, positionx, positiony):
+        self.position.append([positionx, positiony])
 
 
 class Player:
 
     def __init__(self,dictionnary):
-        self.positionx,self.positiony = self.checkposition(dictionnary)
+        self.positionx, self.positiony = self.checkposition(dictionnary)
         self.listobjects = set()
 
-    def checkposition(self,dictionnary):
-        for cle, valeur in dictionnary.dict_labyrinthe.items(): # ICIIIIIIIIIIIIII pb j'ai modifié dictionnary.items par dictionnary.dict_labyrinthe.items et ca marche
+    def checkposition(self, dictionnary):
+        for cle, valeur in dictionnary.dict_labyrinthe.items():
             if valeur == "m":
                 return cle
 
-    def checkobject(self,dictionnary):
+    def checkobject(self, dictionnary):
 
-        if self.checkposition() == dictionnary.object1[0]: # j'apelle un object dictionnary qui contient object1 (lui meme une liste)
+        if self.checkposition() == dictionnary.object1[0]:
             self.listobjects.add(dictionnary.object1[1])
         if self.checkposition() == dictionnary.object2[0]:
             self.listobjects.add(dictionnary.object2[1])
@@ -43,7 +41,7 @@ class Player:
         else:
             return False
 
-    def checkguardianposition(self,dictionnary): # Ajout
+    def checkguardianposition(self, dictionnary):
         for cle, valeur in dictionnary.dict_labyrinthe.items():
             if valeur == "g":
                 return cle
@@ -65,7 +63,7 @@ class Dictionnary:
         my_file = open("labyrinthe.txt", "r")
         text = my_file.read()
 
-        nb_lettre = 15  # Bloc pour compter le nombre de lettres dans une ligne
+        nb_lettre = 15
         key1 = 0
         key2 = 0
 
@@ -105,35 +103,27 @@ class Dictionnary:
 
         for cle, valeur in self.dict_labyrinthe.items():
             if valeur == "w":
-                list_wall.insertposition(cle[0],cle[1])
+                list_wall.insertposition(cle[0], cle[1])
                 destx = cle[0] * 20
                 desty = cle[1] * 20
-                pygamewindow.blit(list_wall.image,(destx,desty))
-
-        for cle, valeur in self.dict_labyrinthe.items():
+                pygamewindow.blit(list_wall.image, (destx, desty))
             if valeur == "m":
-                list_wall.insertposition(cle[0],cle[1])
+                list_gyver.insertposition(cle[0], cle[1])
                 destx = cle[0] * 20
                 desty = cle[1] * 20
-                pygamewindow.blit(list_gyver.image,(destx,desty))
-
-        for cle, valeur in self.dict_labyrinthe.items():
+                pygamewindow.blit(list_gyver.image, (destx, desty))
             if valeur == "g":
-                list_wall.insertposition(cle[0],cle[1])
+                list_guardian.insertposition(cle[0], cle[1])
                 destx = cle[0] * 20
                 desty = cle[1] * 20
-                pygamewindow.blit(list_guardian.image,(destx,desty))
-
-        for cle, valeur in self.dict_labyrinthe.items():
+                pygamewindow.blit(list_guardian.image, (destx, desty))
             if valeur == "a":
-                list_wall.insertposition(cle[0],cle[1])
+                list_object1.insertposition(cle[0], cle[1])
                 destx = cle[0] * 20
                 desty = cle[1] * 20
-                pygamewindow.blit(list_object1.image,(destx,desty))
-
-        for cle, valeur in self.dict_labyrinthe.items():
+                pygamewindow.blit(list_object1.image, (destx, desty))
             if valeur == "b":
-                list_wall.insertposition(cle[0],cle[1])
+                list_object2.insertposition(cle[0], cle[1])
                 destx = cle[0] * 20
                 desty = cle[1] * 20
-                pygamewindow.blit(list_object2.image,(destx,desty))
+                pygamewindow.blit(list_object2.image, (destx, desty))

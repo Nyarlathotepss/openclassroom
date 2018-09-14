@@ -28,23 +28,25 @@ while continuer:
         if event.type == QUIT:  # Si un de ces événements est de type QUIT
             continuer = 0  # On arrête la boucle
 
-        if event.type == K_DOWN:
+        if event.type == KEYDOWN:
             if event.key == K_LEFT:
-                dict.dict_labyrinthe[position] = "-"
+                dict.dict_labyrinthe[position[0],position[1]] = "-"
                 dict.dict_labyrinthe[(position[0]) - 1, position[1]] = "m"
-                print("left")
-            if event.type == K_RIGHT:
+            if event.key == K_RIGHT:
                 dict.dict_labyrinthe[position] = "-"
                 dict.dict_labyrinthe[(position[0]) + 1, position[1]] = "m"
-            if event.type == K_DOWN:
+            if event.key == K_DOWN:
                 dict.dict_labyrinthe[position] = "-"
                 dict.dict_labyrinthe[(position[0]), (position[1] + 1)] = "m"
-            if event.type == K_UP:
+            if event.key == K_UP:
                 dict.dict_labyrinthe[position] = "-"
                 dict.dict_labyrinthe[(position[0]), (position[1] - 1)] = "m"
-            if dict.dict_labyrinthe[position] == positionguardian:
-                if macgyver.checkallobjects == False:
-                    continuer = 0
+            window.blit(fond, (0, 0))
+            dict.display_element(window)
+            pygame.display.flip()
+        if dict.dict_labyrinthe[position] == positionguardian:
+            if macgyver.checkallobjects == False:
+                continuer = 0
 
-        dict.display_element(window)
-        pygame.display.flip()
+
+
