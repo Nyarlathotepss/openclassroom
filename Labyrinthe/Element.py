@@ -1,9 +1,14 @@
 import pygame
 import random
 
+
 class Element:
 
-    dictionnary = {"w":"wall.png", "m":"MacGyver.png", "a":"seringue.png", "b":"tube_plastique.png", "c":"ether.png", "g":"Gardien.png", "-":"empty.png"}
+    """For each element in dictionnary (letter) give image and position
+    Use to display"""
+
+    dictionnary = {"w": "wall.png", "m": "MacGyver.png", "a": "seringue.png", "b": "tube_plastique.png",
+                   "c": "ether.png", "g": "Gardien.png", "-": "empty.png"}
 
     def __init__(self, letter):
         self.position = []
@@ -15,18 +20,33 @@ class Element:
 
 
 class Player:
+    """Use to check position character and objects"""
 
-    def __init__(self,dictionnary):
+    def __init__(self, dictionnary):
         self.positionx, self.positiony = self.checkposition(dictionnary)
         self.listobjects = set()
 
     def checkposition(self, dictionnary):
+        """
+        return macgyver position
+        """
         for cle, valeur in dictionnary.dict_labyrinthe.items():
             if valeur == "m":
                 return cle
 
-    def checkobject(self, dictionnary):
+    def checkguardianposition(self, dictionnary):
+        """
+        return guardian position
+        """
+        for cle, valeur in dictionnary.dict_labyrinthe.items():
+            if valeur == "g":
+                return cle
 
+    def checkobject(self, dictionnary):
+        """
+        if macgyver is in the same position of objectX
+        add this object to set "listobjects"
+        """
         if self.checkposition() == dictionnary.object1[0]:
             self.listobjects.add(dictionnary.object1[1])
         if self.checkposition() == dictionnary.object2[0]:
@@ -35,22 +55,18 @@ class Player:
             self.listobjects.add(dictionnary.object3[1])
 
     def checkallobjects(self):
-
+        """
+        return True if macgyver found 3 objects
+        """
         if len(self.listobjects) == 3:
             return True
         else:
             return False
 
-    def checkguardianposition(self, dictionnary):
-        for cle, valeur in dictionnary.dict_labyrinthe.items():
-            if valeur == "g":
-                return cle
-
-
 class Dictionnary:
+    """generate differents objects who used a dictionnary to found position"""
 
     def __init__(self):
-        '''By default my dictionnary is empty'''
         self.dict_labyrinthe = {}
         self.object1 = []
         self.object2 = []
@@ -59,7 +75,9 @@ class Dictionnary:
         self.generateobject()
 
     def generatedictionnary(self):
-        ''' Generate a dictionnary with file.txt'''
+        '''
+        Generate a dictionnary from file.txt
+        '''
         my_file = open("labyrinthe.txt", "r")
         text = my_file.read()
 
@@ -76,7 +94,9 @@ class Dictionnary:
                     key2 += 1
 
     def generateobject(self):
-        '''generate 3 objects in random position in dictionnary'''
+        '''
+        generate 3 objects in random position in dictionnary
+        '''
         list_empty_case = []
         for cle, valeur in self.dict_labyrinthe.items():
             if valeur == "-":
@@ -92,14 +112,16 @@ class Dictionnary:
         self.object3.append("c")
 
     def display_element(self, pygamewindow):
-
+        """
+        for each letter display image in good position
+        display the window game
+        """
         list_wall = Element("w")
         list_gyver = Element("m")
         list_guardian = Element("g")
         list_object1 = Element("a")
         list_object2 = Element("b")
         list_object3 = Element("c")
-
 
         for cle, valeur in self.dict_labyrinthe.items():
             if valeur == "w":
@@ -127,3 +149,8 @@ class Dictionnary:
                 destx = cle[0] * 20
                 desty = cle[1] * 20
                 pygamewindow.blit(list_object2.image, (destx, desty))
+            if valeur == "c":
+                list_object3.insertposition(cle[0], cle[1])
+                destx = cle[0] * 20
+                desty = cle[1] * 20
+                pygamewindow.blit(list_object3.image, (destx, desty))
