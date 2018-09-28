@@ -8,7 +8,7 @@ class Element:
     Use to display"""
 
     dictionnary = {"w": "wall.png", "m": "MacGyver.png", "a": "seringue.png", "b": "tube_plastique.png",
-                   "c": "ether.png", "g": "Gardien.png", "-": "empty.png"}
+                   "c": "ether.png", "g": "Gardien.png"}
 
     def __init__(self, letter):
         self.position = []
@@ -47,11 +47,11 @@ class Player:
         if macgyver is in the same position of objectX
         add this object to set "listobjects"
         """
-        if self.checkposition() == dictionnary.object1[0]:
+        if self.checkposition(dictionnary) == dictionnary.object1[0]:
             self.listobjects.add(dictionnary.object1[1])
-        if self.checkposition() == dictionnary.object2[0]:
+        if self.checkposition(dictionnary) == dictionnary.object2[0]:
             self.listobjects.add(dictionnary.object2[1])
-        if self.checkposition() == dictionnary.object3[0]:
+        if self.checkposition(dictionnary) == dictionnary.object3[0]:
             self.listobjects.add(dictionnary.object3[1])
 
     def checkallobjects(self):
@@ -111,7 +111,7 @@ class Dictionnary:
         self.dict_labyrinthe[self.object3[0]] = "c"
         self.object3.append("c")
 
-    def display_element(self, pygamewindow):
+    def displayelement(self, pygamewindow):
         """
         for each letter display image in good position
         display the window game

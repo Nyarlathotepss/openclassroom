@@ -1,24 +1,25 @@
 import pygame
-from Element import *
-from pygame.locals import *
+from pygame.locals import KEYDOWN, QUIT, K_LEFT, K_RIGHT, K_UP, K_DOWN
+from Element import Player, Dictionnary, Element
 
 dict = Dictionnary()
 
 pygame.init()
 
-window = pygame.display.set_mode((300, 300), RESIZABLE)
+window = pygame.display.set_mode((300, 300))
 fond = pygame.image.load("fond-gris.jpg").convert()
 window.blit(fond, (0, 0))
 
-dict.display_element(window)
+dict.displayelement(window)
 
 pygame.display.flip()
+
+macgyver = Player(dict)
+guardian = Player(dict)
 
 continuer = 1
 while continuer:
 
-    macgyver = Player(dict)
-    guardian = Player(dict)
     position = macgyver.checkposition(dict)
     positionguardian = guardian.checkguardianposition(dict)
 
@@ -44,14 +45,17 @@ while continuer:
                 if dict.dict_labyrinthe[position[0], position[1] - 1] != "w":
                     dict.dict_labyrinthe[position] = "-"
                     dict.dict_labyrinthe[(position[0]), (position[1] - 1)] = "m"
+            macgyver.checkobject(dict)
 
+            position = macgyver.checkposition(dict)
             window.blit(fond, (0, 0))
-            dict.display_element(window)
+            dict.displayelement(window)
             pygame.display.flip()
-
-        if dict.dict_labyrinthe[position] == positionguardian:
-            if macgyver.checkallobjects == False:
+            print(position, positionguardian, macgyver.checkallobjects(), macgyver.listobjects)
+        if position == positionguardian:
+            if macgyver.checkallobjects() == False:
                 continuer = 0
-
-
-
+            else:
+                fond2 = pygame.image.load("congrat.png").convert()
+                window.blit(fond2, (0, 0))
+                pygame.display.flip()
